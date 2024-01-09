@@ -21,6 +21,7 @@ export default function FormInput({
   return (
     <div>
       <label
+        htmlFor={label}
         className={clsx(
           'block mb-1.5 text-sm font-semibold capitalize',
           labelClass
@@ -29,6 +30,7 @@ export default function FormInput({
         {label}
       </label>
       <input
+        id={label}
         className={clsx(
           'w-full px-3 py-2 text-sm rounded outline-none  placeholder:capitalize placeholder:text-xs outline-1 duration-300',
           error

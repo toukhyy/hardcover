@@ -25,7 +25,10 @@ export default function LoginPage() {
             Don't have an account,{' '}
             <span
               className="text-silk-500 font-semibold hover:text-silk-700 duration-200 cursor-pointer"
-              onClick={() => setOpen(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(true);
+              }}
             >
               Register.
             </span>
