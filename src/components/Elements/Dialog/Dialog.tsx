@@ -2,12 +2,14 @@ import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { MdClose } from 'react-icons/md';
 import { motion, AnimatePresence } from 'framer-motion';
+import clsx from 'clsx';
 
 type Props = {
   isOpen: boolean;
   onClose?: () => void;
   ariaLabel?: string;
   children: ReactNode;
+  DialogClass?: string;
 };
 
 export default function Dialog({
@@ -15,6 +17,7 @@ export default function Dialog({
   isOpen,
   onClose,
   ariaLabel = 'dialog',
+  DialogClass,
 }: Props) {
   return createPortal(
     <AnimatePresence>
@@ -26,12 +29,12 @@ export default function Dialog({
           aria-labelledby={ariaLabel}
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 bg-gray-800/10 flex justify-center items-center"
+          className="fixed inset-0 bg-silk-900/30 flex justify-center items-center"
         >
-          <div className="bg-white p-3 shadow-md rounded relative">
-            <div className="w-full flex justify-end ">
+          <div className={clsx('bg-white p-3 shadow-md rounded', DialogClass)}>
+            <div className="w-full flex justify-end">
               <button
-                className="hover:text-gray-400  "
+                className="hover:text-gray-400"
                 onClick={() => onClose?.()}
               >
                 <MdClose className="h-5 w-5" />
