@@ -1,14 +1,9 @@
 import { RefObject, useEffect } from 'react';
 
-type Props<T> = {
-  callback: () => void;
-  ref: RefObject<T>;
-};
-
-export default function useOutsideClick<T extends HTMLElement>({
-  callback,
-  ref,
-}: Props<T>) {
+export default function useOutsideClick<T extends HTMLElement>(
+  ref: RefObject<T>,
+  callback: () => void
+) {
   useEffect(() => {
     const listener = (e: MouseEvent) => {
       const element = ref.current;

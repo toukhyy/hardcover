@@ -21,7 +21,8 @@ export default function Dialog({
   DialogClass,
 }: Props) {
   const ref = useRef(null);
-  useOutsideClick({ callback: () => onClose(), ref });
+  useOutsideClick(ref, () => onClose());
+
   return createPortal(
     <AnimatePresence>
       {isOpen && (
