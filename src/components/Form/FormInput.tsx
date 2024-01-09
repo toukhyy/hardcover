@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 type Props = {
   label: string;
-  type: string;
+  type: 'text' | 'email' | 'password';
   error?: FieldError;
   registration: Partial<UseFormRegisterReturn>;
   labelClass?: string;
@@ -18,12 +18,11 @@ export default function FormInput({
   labelClass,
   inputClass,
 }: Props) {
-  console.log(error);
   return (
     <div>
       <label
         className={clsx(
-          'block mb-2 text-sm font-bold text-gray-700 capitalize',
+          'block mb-1.5 text-sm font-semibold capitalize',
           labelClass
         )}
       >
@@ -31,8 +30,10 @@ export default function FormInput({
       </label>
       <input
         className={clsx(
-          'w-full px-3 py-2 text-sm text-gray-700 rounded  outline-slate-200 outline outline-2 focus:outline-slate-400 ',
-          error && 'outline-2 outline-red-400 focus:outline-red-400 ',
+          'w-full px-3 py-2 text-sm rounded outline-none  placeholder:capitalize placeholder:text-xs outline-1 duration-300',
+          error
+            ? 'outline-red-500'
+            : 'outline-slate-200 focus:outline-slate-400',
           inputClass
         )}
         type={type}
@@ -40,9 +41,7 @@ export default function FormInput({
         {...registration}
       />
       {error && (
-        <span className="text-xs text-red-400 font-medium">
-          {error.message}
-        </span>
+        <p className="text-xs text-red-400 font-medium mt-1">{error.message}</p>
       )}
     </div>
   );
